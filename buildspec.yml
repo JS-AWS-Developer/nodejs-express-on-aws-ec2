@@ -1,27 +1,19 @@
-version 0.2
+version: 0.2
 
-phase:
+phases:
   install:
-  commands:
-    - echo Executing Install Phase
-    - echo Executing second part of Install Phase
-  finally:
-  - echo Executing Install Finally
+    runtime-versions:
+      java: corretto11
   pre_build:
-  commands:
-    - echo Executing Pre Build Phase
-    finally:
-  - echo Executing Pre Build Finally
-
-    build:
-  commands:
-    - echo Executing Build Phase
-    finally:
-  - echo Executing Build Finally
-
-    post_build:
-  commands:
-    - echo Executing Post Build Phase
-    finally:
-  - echo Executing Install Finally
- 
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/messageUtil-1.0.jar
